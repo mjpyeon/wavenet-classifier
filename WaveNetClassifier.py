@@ -20,6 +20,8 @@ class WaveNetClassifier():
       n_filters: (integer) # of filters of convolution operations in residual blocks
       task: (string) 'classification' or 'regression'
       regression_range: (list or tuple) target range of regression task
+      load: (bool) load previous WaveNetClassifier or not
+      load_dir: (string) the directory where the previous model exists
     """      
     # save task info
     if task == 'regression':
