@@ -182,3 +182,6 @@ class WaveNetClassifier():
       sys.exit()
     return self.history
 
+
+  def predict(self, x):
+    return self.model.predict(x)
