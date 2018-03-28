@@ -68,7 +68,7 @@ class WaveNetClassifier():
     self.kernel_size = kernel_size
     self.dilation_depth = dilation_depth
     self.n_filters = n_filters
-    self.manual_loss = False
+    self.manual_loss = None
 
     
     if load is True:
@@ -142,13 +142,12 @@ class WaveNetClassifier():
     return self.model
     
   def add_loss(self, loss):
-    self.model.add_loss(loss)
-    self.manual_loss = True
+    self.manual_loss = loss
   
   def fit(self, X, Y, validation_data = None, epochs = 100, batch_size = 32, optimizer='adam', save=False, save_dir='./'):
     # set default losses if not defined
-    if self.manual_loss:
-      loss = None
+    if self.manual_loss is not None:
+      loss = self.manual_loss
       metrics = None
     else:
       if self.task == 'classification':
