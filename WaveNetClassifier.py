@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import sys
 import tensorflow as tf
 from keras.layers import Input, Dense, Lambda, Flatten, Reshape, Activation, Dropout, Add, TimeDistributed, Multiply, Conv1D, Conv2D, MaxPooling1D, AveragePooling1D
@@ -175,8 +176,9 @@ class WaveNetClassifier():
     try:
       self.history = self.model.fit(X, Y, shuffle = True, batch_size=batch_size, epochs = epochs, validation_data = validation_data, callbacks=callbacks, initial_epoch=self.start_idx)
     except:
-      df = pd.DataFrame.from_dict(history.history)
-      df.to_csv(hist, encoding='utf-8', index=False)
+      if save:
+      	df = pd.DataFrame.from_dict(history.history)
+      	df.to_csv(hist, encoding='utf-8', index=False)
       raise
       sys.exit()
     return self.history
