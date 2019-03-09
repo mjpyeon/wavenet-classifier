@@ -25,6 +25,7 @@ class WaveNetClassifier():
       load_dir: (string) the directory where the previous model exists
     """      
     # save task info
+	self.task = task
     if task == 'regression':
       if regression_range[0] == 0:
         self.activation = 'sigmoid'
